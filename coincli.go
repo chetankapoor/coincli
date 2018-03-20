@@ -30,7 +30,7 @@ func main() {
 
     fmt.Printf("Program Name: %s\n", cmd)
 
-    url := "https://api.coinmarketcap.com/v1/ticker"
+    url := "https://api.coinmarketcap.com/v1/ticker/?limit=10"
 
     spaceClient := http.Client{
         Timeout: time.Second * 2, // Maximum of 2 secs
@@ -60,11 +60,10 @@ func main() {
 
     fmt.Println("--------------------------------------------------------------------------------------------")
     fmt.Printf("|%-6s|%-10s|%-15s|%-20s|%-20s|%-25s|\n", "RANK", "COIN", "Price (USD)", "Change (24H)", "Change (1H)", "Market Cap (USD)")
-
+    fmt.Println("--------------------------------------------------------------------------------------------")
     for i := 0; i < len(keys); i += 1 {
     	v := keys[i]
     	fmt.Printf("|%-6s|%-10s|%-15s|%-20s|%-20s|%-25s|\n", v.Rank, v.Symbol, v.Price_usd, v.Percent_change_24h, v.Percent_change_1h, v.Market_cap_usd)
-	}
-
-	fmt.Println("--------------------------------------------------------------------------------------------")
+	    fmt.Println("--------------------------------------------------------------------------------------------")
+    }
 }
